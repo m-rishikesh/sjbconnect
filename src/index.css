@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body{
+    background-color: #000000;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    color:white;
+}
+
+/* purple-bg-color = 111827 */
