@@ -2,13 +2,13 @@ import '@fontsource/roboto';
 import React from "react";
 import { createTheme, ThemeProvider } from '@mui/material';
 import {Button} from "@mui/material";
-import Navbar from './components/navbar';
-import Hero from './components/Hero';
-import CreateCards from './components/CreateCards';
-import Footer from './components/Footer';
+import Navbar from './components/Navbar.jsx';
+import Hero from './components/Hero.jsx';
+import CreateCards from './components/CreateCards.jsx';
+import Footer from './components/Footer.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import About from './components/About';
-import Notes from './components/Notes';
+import About from './components/About.jsx';
+import Notes from './components/Notes.jsx';
 
 const SJBConnect = () =>{
   const theme = createTheme({
