@@ -1,28 +1,46 @@
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { render } from 'react-dom';
-
+import Noteslist from '../db/notesdata';
+import FileSaver, { saveAs } from 'file-saver';
+import axios from 'axios';
 export default function Notes() {
   const depts = ['CSE', 'ISE', 'ECE', 'CS-DS'];
   const noteslist = ['[Module-1]', '[Module-2]', '[Module-3]', '[Module-4]', '[Module-5]'];
   const years = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
   const [yearbool, setyearbool] = useState(false);
   const [notesbool, setnotesbool] = useState(false);
-  const noteslinklist = ['https://www.google.com','facebook.com','xvideos.com','x.com','pink.com']
-
+  const [coursenumber,setcoursenumber] = useState(0);
+  const [yearnumber,setyearnumber] = useState(0);
+  // let selectedCourse;
   // Refactored rendercontent function to return JSX
+
+  async function downloadpdf(pdfUrl,pdftitle){
+    try {
+      const response = await axios.get(pdfUrl, { responseType: 'blob' }); // Crucial: responseType: 'blob'
+      saveAs(response.data, pdftitle || 'downloaded_file.pdf');
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      // Handle the error (e.g., show an error message to the user)
+    }
+  }
+
   const rendercontent = (elementsList, setboolFunc) => {
     return elementsList.map((element, index) => (
 
       <div
-        key={index}
+        key={!yearbool ? element.course_id : index}
         className="container flex w-full font-mono hover:text-amber-300 my-10"
-        onClick={() => setboolFunc(true)}
+        onClick={() => {
+          setboolFunc(true)
+          !yearbool ? setcoursenumber(element.course_id) : setyearnumber(index);
+        }
+        }
       >
         {/* cards section */}
         <div className="elements py-3 w-full text-left px-2 cursor-pointer">
           <FolderOpenIcon />
-          <span className="px-3 text-xl">{element}</span>
+          <span className="px-3 text-xl">{!yearbool ? element.course : element}</span>
         </div>
       </div>
     ));
@@ -57,19 +75,20 @@ export default function Notes() {
         {notesbool
           ? <>
           <div className="container flex flex-col">
-            {noteslist.map((element, index) => (
+            {
+            Noteslist[coursenumber-1].noteslist[yearnumber].map((element, index) => (
 
         <div
             key={index}
             className="container flex font-mono my-10"
-            onClick={() => setboolFunc(true)}
+            // onClick={() => setboolFunc(true)}
         >
   {/* cards section */}
   <div className="elements py-3 w-full text-left px-2 cursor-pointer">
     <FolderOpenIcon />
-    <span className="px-3 text-xl">{element}</span>
-    <span className='hover:text-indigo-500 border-2 border-white p-2 mx-2 hover:border-blue-500'><a href={noteslinklist[index]} target="_blank">Download</a></span>
-    <span className='hover:text-red-500 border-2 border-white p-2 mx-2 hover:border-red-500'><a href="" target='_blank'>View PDF</a></span>
+    <span className="px-3 text-xl">{element.module_name}</span>
+    <span className='hover:text-indigo-500 border-2 border-white p-2 mx-2 hover:border-blue-500'><button onClick={()=>downloadpdf(element.download_link,element.module_name)}>Download</button></span>
+    <span className='hover:text-red-500 border-2 border-white p-2 mx-2 hover:border-red-500'><a href={element.view_link} target='_blank'>View PDF</a></span>
 
   </div>
 </div>
@@ -78,7 +97,7 @@ export default function Notes() {
           </>
           : yearbool
           ? rendercontent(years, setnotesbool)
-          : rendercontent(depts, setyearbool)}
+          : rendercontent(Noteslist, setyearbool)}
       </div>
     </>
   );
