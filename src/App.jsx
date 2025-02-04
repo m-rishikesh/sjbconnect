@@ -9,6 +9,8 @@ import Footer from './components/Footer.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import About from './components/About.jsx';
 import Notes from './components/Notes.jsx';
+import Faculties from './components/Faculties.jsx';
+import Hackathon from './components/Hackathon.jsx';
 
 const SJBConnect = () =>{
   const theme = createTheme({
@@ -30,6 +32,9 @@ const SJBConnect = () =>{
       </>}/>
       <Route path = '/about' element={<About/>}/>
       <Route path = '/notes' element={<Notes/>}/>
+      <Route path = '/faculty' element={<Faculties/>}/>
+      <Route path = '/updates' element={<Hackathon/>}/>
+
 
     </Routes>
     </div>

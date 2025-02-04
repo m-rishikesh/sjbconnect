@@ -1,13 +1,12 @@
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import Noteslist from '../db/notesdata';
 import FileSaver, { saveAs } from 'file-saver';
 import axios from 'axios';
 export default function Notes() {
-  const depts = ['CSE', 'ISE', 'ECE', 'CS-DS'];
+  const depts = ['CSE 💻', 'ISE 🛰️', 'ECE 💡', 'CS-DS 🤖'];
   const noteslist = ['[Module-1]', '[Module-2]', '[Module-3]', '[Module-4]', '[Module-5]'];
-  const years = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+  const years = ['🥇st Year', '🥈nd Year', '🥉rd Year', '🫡th Year'];
   const [yearbool, setyearbool] = useState(false);
   const [notesbool, setnotesbool] = useState(false);
   const [coursenumber,setcoursenumber] = useState(0);
@@ -39,7 +38,7 @@ export default function Notes() {
       >
         {/* cards section */}
         <div className="elements py-3 w-full text-left px-2 cursor-pointer">
-          <FolderOpenIcon />
+          {/* <FolderOpenIcon /> */}
           <span className="px-3 text-xl">{!yearbool ? element.course : element}</span>
         </div>
       </div>
@@ -85,9 +84,8 @@ export default function Notes() {
         >
   {/* cards section */}
   <div className="elements py-3 w-full text-left px-2 cursor-pointer">
-    <FolderOpenIcon />
-    <span className="px-3 text-xl">{element.module_name}</span>
-    <span className='hover:text-indigo-500 border-2 border-white p-2 mx-2 hover:border-blue-500'><button onClick={()=>downloadpdf(element.download_link,element.module_name)}>Download</button></span>
+    <span className="px-5 text-xl">📁{element.module_name}</span>
+    <span className='hover:text-indigo-500 border-2 border-white p-2 mx-2 hover:border-blue-500'><button className='cursor-pointer' onClick={()=>downloadpdf(element.download_link,element.module_name)}>Download</button></span>
     <span className='hover:text-red-500 border-2 border-white p-2 mx-2 hover:border-red-500'><a href={element.view_link} target='_blank'>View PDF</a></span>
 
   </div>
