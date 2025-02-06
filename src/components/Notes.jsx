@@ -78,22 +78,36 @@ export default function Notes() {
 
         <div
             key={index}
-            className="container flex font-mono my-10 "
+            className="container flex font-mono my-2 "
             // onClick={() => setboolFunc(true)}
         >
   {/* cards section */}
-  <div className="elements py-3 w-full text-left px-2 py-2 cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between w-full py-3 px-2">
-    <span className="px-5 text-xl ">📁{element.module_name}</span>
-    
-    <div className="flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-3">
-    {element.download_link && <> 
-      <span className='w-full md:w-auto text-center hover:text-indigo-500 border-2 border-white p-2 mx-2 hover:border-blue-500'><button className='w-full md:w-auto cursor-pointer' onClick={()=>downloadpdf(element.download_link,element.module_name)}>Download</button></span>
+  <div className="elements py-3 w-full text-left px-2 cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between w-full py-3 px-2">
+  <span className="px-5 text-xl">📁{element.module_name}</span>
 
-    <span className='w-full md:w-auto text-center hover:text-red-500 border-2 border-white p-2 mx-2 hover:border-red-500'>{element.view_link && <Link className='w-full block md:w-auto' to={element.view_link} target='_blank'>View PDF</Link>}</span>
-         </>}
-         </div>
-         {/* {console.log(element.download_link)} */}
+  <div className="flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-2">
+    {element.download_link && (
+      <>
+        <span className="w-full md:w-auto text-center hover:text-indigo-500 border-2 border-white p-2 mx-6 hover:border-blue-500">
+          <button
+            className="w-full md:w-auto cursor-pointer"
+            onClick={() => downloadpdf(element.download_link, element.module_name)}
+          >
+            Download
+          </button>
+        </span>
+
+        <span className="w-full md:w-auto text-center hover:text-red-500 border-2 border-white p-2 mx-6 hover:border-red-500">
+          {element.view_link && (
+            <Link className="w-full block md:w-auto" to={element.view_link} target="_blank">
+              View PDF
+            </Link>
+          )}
+        </span>
+      </>
+    )}
   </div>
+</div>
 </div>
 ))}
             </div>

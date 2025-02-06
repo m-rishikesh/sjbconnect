@@ -10,23 +10,23 @@ const Noteslist = [
             },
             {
                 "module_name" : "[Module-2]",
-                "download_link":null,
-                "view_link":null
+                "download_link":"null",
+                "view_link":"null"
             },
             {
                 "module_name" : "[Module-3]",
-                "download_link":null,
-                "view_link":null
+                "download_link":"null",
+                "view_link":"null"
             },
             {
                 "module_name" : "[Module-4]",
-                "download_link":null,
-                "view_link":null
+                "download_link":"null",
+                "view_link":"null"
             },
             {
                 "module_name" : "[Module-5]",
-                "download_link":null,
-                "view_link":null
+                "download_link":"null",
+                "view_link":"null"
             }]
     ,
     [{
