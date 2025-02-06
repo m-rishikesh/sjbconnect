@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { render } from 'react-dom';
+import { Link } from 'react-router-dom';
 import Noteslist from '../db/notesdata';
 import FileSaver, { saveAs } from 'file-saver';
 import axios from 'axios';
@@ -16,7 +16,7 @@ export default function Notes() {
 
   async function downloadpdf(pdfUrl,pdftitle){
     try {
-      const response = await axios.get(pdfUrl, { responseType: 'blob' }); // Crucial: responseType: 'blob'
+      const response = pdfUrl !=="null" ? await axios.get(pdfUrl, { responseType: 'blob' }) : error("No File Found"); // Crucial: responseType: 'blob'
       saveAs(response.data, pdftitle || 'downloaded_file.pdf');
     } catch (error) {
       console.error('Error downloading PDF:', error);
@@ -38,7 +38,6 @@ export default function Notes() {
       >
         {/* cards section */}
         <div className="elements py-3 w-full text-left px-2 cursor-pointer">
-          {/* <FolderOpenIcon /> */}
           <span className="px-3 text-xl">{!yearbool ? element.course : element}</span>
         </div>
       </div>
@@ -67,7 +66,7 @@ export default function Notes() {
             onClick={backfunc}
             className="text-left absolute top-10 left-3 px-2 py-2 cursor-pointer hover:text-amber-300 font-mono hover:border-amber-300 border-2 border-white"
           >
-            {"< Back"}
+            {"👈🏻 Back"}
           </span>
         )}
 
@@ -79,15 +78,21 @@ export default function Notes() {
 
         <div
             key={index}
-            className="container flex font-mono my-10"
+            className="container flex font-mono my-10 "
             // onClick={() => setboolFunc(true)}
         >
   {/* cards section */}
-  <div className="elements py-3 w-full text-left px-2 cursor-pointer">
-    <span className="px-5 text-xl">📁{element.module_name}</span>
-    <span className='hover:text-indigo-500 border-2 border-white p-2 mx-2 hover:border-blue-500'><button className='cursor-pointer' onClick={()=>downloadpdf(element.download_link,element.module_name)}>Download</button></span>
-    <span className='hover:text-red-500 border-2 border-white p-2 mx-2 hover:border-red-500'><a href={element.view_link} target='_blank'>View PDF</a></span>
+  <div className="elements py-3 w-full text-left px-2 py-2 cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between w-full py-3 px-2">
+    <span className="px-5 text-xl ">📁{element.module_name}</span>
+    
+    <div className="flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-3">
+    {element.download_link && <> 
+      <span className='w-full md:w-auto text-center hover:text-indigo-500 border-2 border-white p-2 mx-2 hover:border-blue-500'><button className='w-full md:w-auto cursor-pointer' onClick={()=>downloadpdf(element.download_link,element.module_name)}>Download</button></span>
 
+    <span className='w-full md:w-auto text-center hover:text-red-500 border-2 border-white p-2 mx-2 hover:border-red-500'>{element.view_link && <Link className='w-full block md:w-auto' to={element.view_link} target='_blank'>View PDF</Link>}</span>
+         </>}
+         </div>
+         {/* {console.log(element.download_link)} */}
   </div>
 </div>
 ))}
