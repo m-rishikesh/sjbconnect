@@ -11,6 +11,7 @@ import About from './components/About.jsx';
 import Notes from './components/Notes.jsx';
 import Faculties from './components/Faculties.jsx';
 import Hackathon from './components/Hackathon.jsx';
+import UploadForm from './components/UploadForm.jsx';
 
 const SJBConnect = () =>{
   const theme = createTheme({
@@ -34,7 +35,7 @@ const SJBConnect = () =>{
       <Route path = '/notes' element={<Notes/>}/>
       <Route path = '/faculty' element={<Faculties/>}/>
       <Route path = '/updates' element={<Hackathon/>}/>
-
+      <Route path='/upload' element={<UploadForm/>}/>
 
     </Routes>
     </div>
