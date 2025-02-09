@@ -42,7 +42,7 @@ const UploadForm = () => {
           <label className="block text-white mb-1">Upload PDF</label>
           <input
             type="file"
-            accept="application/pdf"
+            accept=".pdf,application/pdf"
             onChange={(e) => setFile(e.target.files[0])}
             required
             className="w-full px-3 py-2 bg-gray-900 text-white border border-white rounded focus:outline-none focus:ring-2 focus:ring-white file:bg-gray-700 file:text-white file:border-none file:rounded file:px-3 file:py-1 file:mr-3 file:cursor-pointer"
