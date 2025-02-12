@@ -17,6 +17,19 @@ const UploadForm = () => {
     e.target.reset();
   };
 
+  const handlefilesubmit = (e) =>{
+      const selectedfile = e.target.files[0]
+      if(selectedfile){
+        if(selectedfile.type!='application/pdf' && !selectedfile.name.endsWith('.pdf')){
+          alert('Please select a PDF file.');
+          e.target.value = ''; // Clear the input
+          setFile(null);
+          return;
+        }
+        setFile(selectedfile);
+      }
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen ">
       <form
@@ -43,7 +56,7 @@ const UploadForm = () => {
           <input
             type="file"
             accept=".pdf,application/pdf"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={handlefilesubmit}
             required
             className="w-full px-3 py-2 bg-gray-900 text-white border border-white rounded focus:outline-none focus:ring-2 focus:ring-white file:bg-gray-700 file:text-white file:border-none file:rounded file:px-3 file:py-1 file:mr-3 file:cursor-pointer"
           />
