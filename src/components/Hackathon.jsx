@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import EventCard from './EventCard';  // Import EventCard Component
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Hackathon = () => {
   // const events = [
