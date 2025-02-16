@@ -7,6 +7,9 @@ body{
     padding: 2rem;
     text-align: center;
     color:white;
+    font-family: "Spline Sans Mono", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 /* purple-bg-color = 111827 */

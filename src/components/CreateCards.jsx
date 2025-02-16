@@ -5,7 +5,7 @@ import DataArrayIcon from '@mui/icons-material/DataArray';
 export default function CreateCards (){
     return (
         <>
-        <div className="maincon flex flex-col md:flex-row font-bold font-mono my-10 md:my-19 border-2 border-dashed border-white-500 shadow-xl px-5 md:px-20 py-5 md:py-10">
+        <div className="maincon flex flex-col md:flex-row font-bold  my-10 md:my-19 border-2 border-dashed border-white-500 shadow-xl px-5 md:px-20 py-5 md:py-10">
           <div className="container w-full md:w-1/3 text-center mb-5 md:mb-0">
             <PictureAsPdfIcon fontSize="large" />
             <br />

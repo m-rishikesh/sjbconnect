@@ -57,6 +57,10 @@ const Hackathon = () => {
     })
   },[])
   return (
+    <>
+      <div className="upload-data">
+      <Link to='/uploadhackathon'><button className='border-2 border-white p-3 font-bold hover:cursor-pointer hover:border-blue-600 hover:text-blue-600'>⬆️ Upload Hackathon</button></Link>
+      </div>
     <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 p-4">
       
       {/* {console.log("event data: ",events.data)} */}
@@ -78,6 +82,7 @@ const Hackathon = () => {
       )
       }
     </div>
+    </>
   );
 };
 

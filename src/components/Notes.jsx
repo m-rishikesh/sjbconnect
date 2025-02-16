@@ -5,7 +5,7 @@ import FileSaver, { saveAs } from 'file-saver';
 import axios from 'axios';
 export default function Notes() {
   const depts = ['CSE 💻', 'ISE 🛰️', 'ECE 💡', 'CS-DS 🤖'];
-  const noteslist = ['[Module-1]', '[Module-2]', '[Module-3]', '[Module-4]', '[Module-5]'];
+  // const noteslist = ['[Module-1]', '[Module-2]', '[Module-3]', '[Module-4]', '[Module-5]'];
   const years = ['🥇st Year', '🥈nd Year', '🥉rd Year', '🫡th Year'];
   const [yearbool, setyearbool] = useState(false);
   const [notesbool, setnotesbool] = useState(false);
@@ -29,7 +29,7 @@ export default function Notes() {
 
       <div
         key={!yearbool ? element.course_id : index}
-        className="container flex w-full font-mono hover:text-amber-300 my-10"
+        className="container flex w-full  hover:text-amber-300 my-10"
         onClick={() => {
           setboolFunc(true)
           !yearbool ? setcoursenumber(element.course_id) : setyearnumber(index);
@@ -64,7 +64,7 @@ export default function Notes() {
         {yearbool && (
           <span
             onClick={backfunc}
-            className="text-left absolute top-10 left-3 px-2 py-2 cursor-pointer hover:text-amber-300 font-mono hover:border-amber-300 border-2 border-white"
+            className="text-left absolute top-10 left-3 px-2 py-2 cursor-pointer hover:text-amber-300  hover:border-amber-300 border-2 border-white"
           >
             {"👈🏻 Back"}
           </span>
@@ -78,12 +78,12 @@ export default function Notes() {
 
         <div
             key={index}
-            className="container flex font-mono my-2 "
+            className="container flex  my-2 "
             // onClick={() => setboolFunc(true)}
         >
   {/* cards section */}
   <div className="elements py-3 w-full text-left px-2 cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between w-full py-3 px-2">
-  <span className="px-5 text-xl">📁{element.module_name}</span>
+  <span className="px-5 text-xl">📁 {element?.subject} {element.module_name}</span>
 
   <div className="flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-2">
     {element.download_link && (
