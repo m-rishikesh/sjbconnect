@@ -2,15 +2,40 @@ import React, { useState } from "react";
 
 const UploadForm = () => {
   const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [year, setYear] = useState("");
+  const [branch, setBranch] = useState("");
   const [file, setFile] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("File:", file);
 
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("subject", subject);
+    formData.append("year", year);
+    formData.append("branch", branch);
+    formData.append("file", file);
+
+await fetch(import.meta.env.VITE_POST_NOTES_DATA, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert("Form Submitted Successfully");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
     // Reset form fields after submission
     setEmail("");
+    setBranch("");
+    setYear("");
+    setSubject("");
     setFile(null);
 
     // Clear the file input field manually
@@ -48,6 +73,49 @@ const UploadForm = () => {
             required
             className="w-full px-3 py-2 bg-gray-900 text-white border border-white rounded focus:outline-none focus:ring-2 focus:ring-white"
           />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-white mb-1">Subject+Module</label>
+          <input
+            type="text"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            required
+            className="w-full px-3 py-2 bg-gray-900 text-white border border-white rounded focus:outline-none focus:ring-2 focus:ring-white"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-white mb-1">Branch</label>
+          <select
+            value={branch}
+            onChange={(e) => setBranch(e.target.value)}
+            required
+            className="w-full px-3 py-2 bg-gray-900 text-white border border-white rounded focus:outline-none focus:ring-2 focus:ring-white"
+          >
+            <option value="">Select Branch</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="ISE">ISE</option>
+            <option value="CS-DS">CS-DS</option>
+          </select>
+        </div>
+           
+        <div className="mb-4">
+          <label className="block text-white mb-1">Year</label>
+          <select
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+            required
+            className="w-full px-3 py-2 bg-gray-900 text-white border border-white rounded focus:outline-none focus:ring-2 focus:ring-white"
+          >
+            <option value="">Select Year</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
         </div>
 
         {/* File Upload */}

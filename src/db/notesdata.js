@@ -1,7 +1,7 @@
 const Noteslist = [
     {
         "course_id":"1",
-        "course":'💻 CSE ',
+        "course":'CSE',
         "noteslist":[[
             // 1st year
             {

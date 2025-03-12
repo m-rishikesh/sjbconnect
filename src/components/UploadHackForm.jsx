@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 const UploadHackForm = () =>{
    const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ const UploadHackForm = () =>{
 
 
  
-   const handleSubmit = (e) => {
+   const handleSubmit = async(e) => {
      e.preventDefault();
      console.log("Email:", email);
      console.log("Title:", title);
@@ -17,8 +18,20 @@ const UploadHackForm = () =>{
      console.log("timedate:", timedate);
      console.log("fee:", fee);
      console.log("enddate:", enddate);
- 
-     // Reset form fields after submission
+
+     const formData = new FormData();
+  formData.append("email", email);
+  formData.append("title", title);
+  formData.append("venue", venue);
+  formData.append("datetime", timedate);
+  formData.append("fee", fee);
+  formData.append("lastdate", enddate);
+
+    await axios.post(import.meta.env.VITE_POST_HACKATHON_UPDATES, formData, {
+      headers: { "Content-Type": "multipart/form-data" }
+    });
+    console.log("Data sent successfully");
+    alert("Form Submitted Successfully");
      setEmail("");
      settitle("")
      setvenue("")
@@ -26,7 +39,6 @@ const UploadHackForm = () =>{
      setfee("")
      setenddate("")
  
-     // Clear the file input field manually
      e.target.reset();
    };
  

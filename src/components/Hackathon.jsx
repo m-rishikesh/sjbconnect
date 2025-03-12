@@ -4,51 +4,35 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Hackathon = () => {
-  // const events = [
-  //   {
-  //     title: "Tech Fest 2025",
-  //     venue: "ABC Auditorium, XYZ University",
-  //     timing: "March 15, 2025 | 10:00 AM - 5:00 PM",
-  //     fee: "₹500",
-  //     lastDate: "March 10, 2025"
-  //   },
-  //   {
-  //     title: "Code Fest 2025",
-  //     venue: "XYZ College",
-  //     timing: "April 20, 2025 | 9:00 AM - 3:00 PM",
-  //     fee: "₹300",
-  //     lastDate: "April 15, 2025"
-  //   },
-  //   {
-  //     title: "AI Hackathon 2025",
-  //     venue: "Tech Park, ABC City",
-  //     timing: "May 5, 2025 | 11:00 AM - 6:00 PM",
-  //     fee: "₹700",
-  //     lastDate: "April 30, 2025"
-  //   },
-  //   {
-  //     title: "Blockchain Summit 2025",
-  //     venue: "DEF Institute",
-  //     timing: "June 10, 2025 | 10:00 AM - 5:00 PM",
-  //     fee: "₹600",
-  //     lastDate: "June 5, 2025"
-  //   },
-  //   {
-  //     title: "Cybersecurity Workshop 2025",
-  //     venue: "GHI College",
-  //     timing: "July 25, 2025 | 8:00 AM - 4:00 PM",
-  //     fee: "₹400",
-  //     lastDate: "July 20, 2025"
-  //   }
-  // ];
+//   const events = [
+//   [
+//     "raj@raj.coms,",
+//     "webhack,",
+//     "no,",
+//     "no,",
+//     "no,",
+//     "no,",
+//     "TRUE"
+//   ],
+//   [
+//     "raj@raj.com",
+//     "webhackasdf",
+//     "tajhotel",
+//     "123",
+//     "200",
+//     "321",
+//     "TRUE"
+//   ]
+// ]
 
   const [events,setevents] = useState([]);
   const [iserrorwhilefetch,setiserrorwhilefetch] = useState(false);
   useEffect(()=>{
-    const hackapi = 'http://127.0.0.1:8000/gethackdetails'
+    const hackapi = `${import.meta.env.VITE_GET_NOTES}`;
     axios.get(hackapi)
-    .then((response)=>{
-      setevents(response.data)
+    .then((response)=>{ 
+      setevents(response.data);
+      console.log(response.data);
       setiserrorwhilefetch(false);
     })
     .catch(err=>{
@@ -65,15 +49,15 @@ const Hackathon = () => {
     <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 p-4">
       
       {/* {console.log("event data: ",events.data)} */}
-      {!iserrorwhilefetch && events.data && events.data.length > 0 ? (events.data).map((event, index) => (
+      {!iserrorwhilefetch && events && events.length > 0 ? events.map((event, index) => (
         <EventCard
           key={index}
           newest={(index==0) ? true : false}
-          title={event.title}
-          venue={event.venue}
-          timing={event.timing}
-          fee={event.fee}
-          lastDate={event.lastDate}
+          title={event[1]}
+          venue={event[2]}
+          timing={event[3]}
+          fee={event[4]}
+          lastDate={event[5]}
         />
       )):iserrorwhilefetch ? (
         <p>Error While Fetching the Content.</p>
