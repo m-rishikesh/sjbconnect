@@ -6,11 +6,13 @@ const UploadForm = () => {
   const [year, setYear] = useState("");
   const [branch, setBranch] = useState("");
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("File:", file);
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("email", email);
@@ -37,6 +39,7 @@ await fetch(import.meta.env.VITE_POST_NOTES_DATA, {
     setYear("");
     setSubject("");
     setFile(null);
+    setLoading(false);
 
     // Clear the file input field manually
     e.target.reset();
@@ -137,6 +140,7 @@ await fetch(import.meta.env.VITE_POST_NOTES_DATA, {
         >
           Submit
         </button>
+      {loading && (<p className="text-white text-center mt-2">Uploading...</p>)}
       </form>
     </div>
   );

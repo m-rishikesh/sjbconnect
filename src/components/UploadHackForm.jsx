@@ -7,11 +7,12 @@ const UploadHackForm = () =>{
    const [timedate, settimedate] = useState("");
    const [fee, setfee] = useState("");
    const [enddate, setenddate] = useState("");
-
+   const [loading,setLoading] = useState(false);
 
  
    const handleSubmit = async(e) => {
      e.preventDefault();
+     setLoading(true);
      console.log("Email:", email);
      console.log("Title:", title);
      console.log("venue:", venue);
@@ -38,7 +39,7 @@ const UploadHackForm = () =>{
      settimedate("")
      setfee("")
      setenddate("")
- 
+     setLoading(false);
      e.target.reset();
    };
  
@@ -128,6 +129,7 @@ const UploadHackForm = () =>{
          >
            Submit
          </button>
+         {loading && (<p className="text-white text-center mt-2">Uploading...</p>)}
        </form>
      </div>
    );
