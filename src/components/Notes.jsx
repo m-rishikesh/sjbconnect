@@ -20,7 +20,6 @@ export default function Notes() {
     try {
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getnotes`);
       setNotes(response.data); 
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching notes:", error);
     } finally {

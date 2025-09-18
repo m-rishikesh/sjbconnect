@@ -13,12 +13,6 @@ const UploadHackForm = () =>{
    const handleSubmit = async(e) => {
      e.preventDefault();
      setLoading(true);
-     console.log("Email:", email);
-     console.log("Title:", title);
-     console.log("venue:", venue);
-     console.log("timedate:", timedate);
-     console.log("fee:", fee);
-     console.log("enddate:", enddate);
 
      const formData = new FormData();
   formData.append("email", email);
@@ -31,7 +25,6 @@ const UploadHackForm = () =>{
     await axios.post(import.meta.env.VITE_POST_HACKATHON_UPDATES, formData, {
       headers: { "Content-Type": "multipart/form-data" }
     });
-    console.log("Data sent successfully");
     alert("Form Submitted Successfully");
      setEmail("");
      settitle("")

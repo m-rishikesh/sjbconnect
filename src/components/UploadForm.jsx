@@ -10,8 +10,6 @@ const UploadForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("File:", file);
     setLoading(true);
 
     const formData = new FormData();

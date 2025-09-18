@@ -32,7 +32,9 @@ const Hackathon = () => {
     axios.get(hackapi)
     .then((response)=>{ 
       setevents(response.data);
-      console.log(response.data);
+
+
+      
       setiserrorwhilefetch(false);
     })
     .catch(err=>{

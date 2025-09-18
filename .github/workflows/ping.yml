@@ -1,0 +1,21 @@
+name: Ping Backend
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # run every 10 minutes
+  workflow_dispatch:          # allow manual run
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Run Python Script
+        run: python pingserver.py
